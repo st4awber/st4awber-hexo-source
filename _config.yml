@@ -105,3 +105,9 @@ deploy:
   type: git
   repo: git@github.com:st4awber/st4awber.github.io.git
   branch: main
+
+search:
+  path: search.xml
+  field: post
+  content: true
+
