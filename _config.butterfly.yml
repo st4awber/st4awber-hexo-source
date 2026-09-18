@@ -566,7 +566,7 @@ comments:
   # 否则页面上会出现一个加载失败的坏评论框。
   # 等 Waline 服务端部署完成、把下面的 serverURL 填好之后，
   # 再把这里改成：use: Waline
-  use:
+  use: Waline
   # Display the comment name next to the button
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -629,7 +629,14 @@ valine:
 #   2. 回到上面的 comments 段，把 use: 改成 use: Waline
 #   3. 重新构建发布
 waline:
-  serverURL:
+  # ⚠️ 注意：冒号后面必须有空格！写成 serverURL:https://... 会让整个
+  #    YAML 解析失败，构建直接中断（YAMLException: bad indentation）。
+  #
+  # ⚠️ 这里必须填【Waline 项目】的地址，不是博客项目的地址！
+  #    Vercel 里有两个项目，别搞混：
+  #      softpane-comment        -> 连的是 st4awber-hexo-source（是博客，错的）
+  #      softpane-comment-4xvg   -> Waline 服务端（对的，就是下面这个）
+  serverURL: https://softpane-comment-4xvg.vercel.app
   bg:
   # Use Waline pageview count as the page view count
   pageview: false
