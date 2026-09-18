@@ -17,7 +17,7 @@
   canvas.width = w;
   canvas.height = h;
 
-  // ³¬Ç³ÃÎ»Ã·Û + Ó«¹âÐ§¹û
+  // ï¿½ï¿½Ç³ï¿½Î»Ã·ï¿½ + Ó«ï¿½ï¿½Ð§ï¿½ï¿½
   const baseColor = [255, 180, 200];
   const lifetime = 35;
   let points = [];
@@ -52,7 +52,7 @@
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
-      // Ó«¹â·¢¹âÐ§¹û
+      // Ó«ï¿½â·¢ï¿½ï¿½Ð§ï¿½ï¿½
       ctx.shadowColor = `rgb(${baseColor[0]}, ${baseColor[1]}, ${baseColor[2]})`;
       ctx.shadowBlur = 6;
 

@@ -52,8 +52,12 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
-  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
+  fab fa-github: https://github.com/st4awber || GitHub || '#24292e'
+  fas fa-envelope: mailto:3367056854@qq.com || Email || '#4a7dbe'
+  # 想加更多就照上面的格式往下写一行，例如：
+  # fab fa-bilibili: https://space.bilibili.com/你的ID || Bilibili || '#00a1d6'
+  # fab fa-zhihu: https://www.zhihu.com/people/你的ID || 知乎 || '#0084ff'
+  # fab fa-x-twitter: https://x.com/你的ID || X || '#000000'
 
 # --------------------------------------
 # Image Settings
@@ -353,7 +357,7 @@ aside:
     enable: true
     # Type: monthly / yearly
     type: monthly
-    # Eg: YYYY��MM�@1�1�77
+    # 例如：2026年04月
     format: MMMM YYYY
     # Sort of order. 1, asc for ascending; -1, desc for descending
     order: -1
@@ -390,7 +394,7 @@ translate:
   enable: false
   # The text of a button
   default: 繁
-  # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese��1�1�77
+  # 站点语言（1 - 繁体中文 / 2 - 简体中文）
   defaultEncoding: 2
   # Time delay
   translateDelay: 0
@@ -557,6 +561,11 @@ comments:
   # Leave it empty if you don't need comments
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
   # Format of two comments system : Disqus,Waline
+  #
+  # 【重要】Waline 还没部署好之前，这里必须保持空白！
+  # 否则页面上会出现一个加载失败的坏评论框。
+  # 等 Waline 服务端部署完成、把下面的 serverURL 填好之后，
+  # 再把这里改成：use: Waline
   use:
   # Display the comment name next to the button
   text: true
@@ -612,6 +621,13 @@ valine:
 
 # Waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
+#
+# 【待完成】Waline 服务端部署步骤见 docs/新手操作手册.md 第 6 节。
+# 部署完成后：
+#   1. 把 serverURL 填成你的 Vercel 地址（末尾不要加 /），例如：
+#      serverURL: https://softpane-comment.vercel.app
+#   2. 回到上面的 comments 段，把 use: 改成 use: Waline
+#   3. 重新构建发布
 waline:
   serverURL:
   bg:
