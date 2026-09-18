@@ -12,3 +12,12 @@ _multiconfig.yml
 _dl/
 # 本机便携版 git（MinGit），只在本机用，不进仓库
 tools/
+
+# ⚠️⚠️ 安全关键：令牌绝不能进仓库！⚠️⚠️
+# 这个仓库是公开的，令牌一旦被提交就等于把钥匙公布出去。
+token.txt
+token
+.token
+pat.txt
+github_token.txt
+*.token
