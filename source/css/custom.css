@@ -211,3 +211,185 @@
 #page-header #scroll-down i {
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .6));
 }
+/* ============================================================
+   6. NO SPINNING ANYWHERE
+   ------------------------------------------------------------
+   The theme rotates several things by 360 degrees on hover:
+     .avatar-img img                    (the avatar)
+     .card-info-social-icons i          (github / mail icons)
+     #vcomment .vimg                    (comment avatar)
+     #nav .menus_items .menus_item ... i (submenu arrow, 180deg)
+   All of them are switched off here.
+   ============================================================ */
+.avatar-img img:hover,
+.avatar-img img,
+.card-info-social-icons i:hover,
+.card-info-social-icons i,
+#vcomment .vimg:hover,
+#vcomment .vimg,
+#nav .menus_items .menus_item:hover > span > i:last-child,
+#nav .menus_items .menus_item .menus_item_child li i {
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* ============================================================
+   7. NON-LINEAR EASING
+   ------------------------------------------------------------
+   Every hover / show-hide motion uses a cubic-bezier curve instead of the
+   default "linear"-feeling ease, so things settle instead of snapping.
+   ============================================================ */
+
+/* the custom curve, reusable */
+:root {
+  --softpane-ease: cubic-bezier(.22, 1, .36, 1);
+  --softpane-ease-soft: cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --- nav dropdown menus: was a hard display:block, now fades + slides --- */
+#nav .menus_items .menus_item .menus_item_child {
+  display: block !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(.96);
+  transform-origin: top center;
+  transition: opacity .32s var(--softpane-ease),
+              transform .32s var(--softpane-ease),
+              visibility .32s;
+  pointer-events: none;
+}
+
+#nav .menus_items .menus_item:hover .menus_item_child {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* --- cards, buttons, links: settle instead of snapping --- */
+#recent-posts .recent-post-item,
+#aside-content .card-widget,
+#aside-content .card-info #card-info-btn,
+#aside-content .card-info .site-data a,
+#rightside > div > button,
+#rightside > div > a,
+#pagination .page-number,
+#article-container a {
+  transition-timing-function: var(--softpane-ease) !important;
+}
+
+/* --- sidebar (mobile) menu items --- */
+#sidebar-menus a,
+#sidebar-menus .site-page {
+  transition: transform .3s var(--softpane-ease), opacity .3s var(--softpane-ease);
+}
+
+/* --- tag / category pills --- */
+#recent-posts .article-meta-wrap a,
+#aside-content .card-tag-cloud a,
+#aside-content .card-categories a {
+  transition: transform .28s var(--softpane-ease),
+              background-color .28s var(--softpane-ease),
+              color .28s var(--softpane-ease);
+}
+
+#aside-content .card-tag-cloud a:hover,
+#aside-content .card-categories a:hover,
+#recent-posts .article-meta-wrap a:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   8. SITE TITLE TYPOGRAPHY
+   ------------------------------------------------------------
+   Font is loaded from a <link> in inject.head (Audiowide, a geometric
+   display face). If it fails to load, the fallbacks below are used and the
+   site still looks fine - no layout depends on the font.
+   ============================================================ */
+#nav .nav-site-title .site-name,
+#nav #blog-info .site-name {
+  font-family: 'Audiowide', 'Chakra Petch', 'Trebuchet MS', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: .5px;
+  font-size: 1.32em;
+  /* blue-purple gradient on the letters themselves */
+  background: linear-gradient(100deg, #8ea2ff 0%, #a78bfa 45%, #7c9bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #8ea2ff; /* fallback if background-clip is unsupported */
+  transition: filter .35s var(--softpane-ease), transform .35s var(--softpane-ease);
+}
+
+#nav .nav-site-title:hover .site-name,
+#nav #blog-info:hover .site-name {
+  filter: brightness(1.25) drop-shadow(0 0 10px rgba(139, 122, 224, .65));
+  transform: translateY(-1px);
+}
+
+/* the big title on the home banner */
+#page-header #site-title {
+  font-family: 'Audiowide', 'Chakra Petch', 'Trebuchet MS', system-ui, sans-serif;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   9. SEARCH DIALOG
+   ------------------------------------------------------------
+   Opens on click (the theme's normal behaviour) and animates in with a
+   non-linear curve instead of appearing instantly.
+   ============================================================ */
+@keyframes softpane-search-in {
+  from { opacity: 0; transform: translateY(-18px) scale(.94); }
+  60%  { opacity: 1; }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes softpane-mask-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#local-search .search-dialog,
+#algolia-search .search-dialog {
+  animation: softpane-search-in .42s var(--softpane-ease); /* NOT "both": a lingering transform offsets the close button */
+}
+
+#search-mask {
+  animation: softpane-mask-in .32s ease-out both;
+  /* softer backdrop so the page stays visible behind the dialog */
+  background: rgba(12, 14, 28, .42) !important;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+/* the input inside the dialog */
+#local-search .local-search-input input,
+#algolia-search .search-input input {
+  border-radius: 10px;
+  transition: border-color .3s var(--softpane-ease), box-shadow .3s var(--softpane-ease);
+}
+
+#local-search .local-search-input input:focus,
+#algolia-search .search-input input:focus {
+  border-color: var(--default-bg-color) !important;
+  box-shadow: 0 0 0 3px rgba(108, 122, 224, .18);
+}
+
+/* close button: gentle scale instead of a hard swap */
+#local-search .search-close-button,
+#algolia-search .search-close-button {
+  transition: transform .3s var(--softpane-ease), color .3s var(--softpane-ease);
+}
+
+#local-search .search-close-button:hover,
+#algolia-search .search-close-button:hover {
+  /* no transform here: scaling the button made it appear to shift */
+  color: var(--btn-hover-color);
+}
+
+/* search result rows */
+#local-search .local-search-hit-item,
+#local-search .ais-Hits-item {
+  transition: transform .3s var(--softpane-ease), background-color .3s var(--softpane-ease);
+}
