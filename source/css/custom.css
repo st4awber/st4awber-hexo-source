@@ -1,24 +1,213 @@
+/* ============================================================
+   Custom styles - edit here, never touch themes/
+   ------------------------------------------------------------
+   After editing:  npx hexo clean && npx hexo generate, then Ctrl+F5
 
-/* 页脚与头图透明 */
-#footer {
-  background: transparent !important;
+   Style: blurred background + frosted-glass cards + blue/purple accent
+   Light and dark mode look the same on purpose.
+   ============================================================ */
+
+/* ============================================================
+   1. Background image
+   ============================================================ */
+
+/* Background image stays SHARP - no blur here.
+   The frosted-glass effect is on the cards and the nav bar only. */
+
+/* Kill the 70% black layer that the theme puts on top of the background
+   in dark mode (themes/butterfly/source/css/_mode/darkmode.styl, #web_bg:before).
+   THIS was the real reason the background looked grey and flat - not "mask". */
+#web_bg:before,
+[data-theme="dark"] #web_bg:before {
+  display: none !important;
+  background-color: transparent !important;
 }
+
+/* ============================================================
+   2. Frosted glass cards
+   ------------------------------------------------------------
+   We override the theme variable --card-bg instead of patching every
+   selector, so cards, pagination and timeline dots all match.
+   ============================================================ */
+
+:root {
+  /* Tell the browser (and dark-mode extensions) that this site handles both
+     light and dark itself. This makes colour-inverting extensions such as
+     Dark Reader far less likely to repaint the page. */
+  color-scheme: light dark;
+
+  --softpane-glass: rgba(255, 255, 255, .30);
+  --softpane-glass-strong: rgba(255, 255, 255, .42);
+  --softpane-border: rgba(255, 255, 255, .45);
+  --softpane-shadow: 0 6px 24px rgba(60, 70, 140, .16);
+  --card-bg: var(--softpane-glass);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --softpane-glass: rgba(26, 28, 44, .52);
+  --softpane-glass-strong: rgba(26, 28, 44, .64);
+  --softpane-border: rgba(165, 180, 252, .26);
+  --softpane-shadow: 0 6px 24px rgba(0, 0, 0, .38);
+  --card-bg: var(--softpane-glass);
+}
+
+.cardHover,
+.layout > div:first-child:not(.nc),
+#recent-posts .recent-post-item,
+#article-container .shuoshuo-item,
+#aside-content .card-widget,
+.layout .pagination > *:not(.space) {
+  background: var(--softpane-glass) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  backdrop-filter: blur(14px) saturate(1.5);
+  border: 1px solid var(--softpane-border);
+  border-radius: 14px;
+  box-shadow: var(--softpane-shadow) !important;
+  transition: box-shadow .3s ease, transform .3s ease, background .3s ease;
+}
+
+#recent-posts .recent-post-item:hover {
+  transform: translateY(-4px);
+  background: var(--softpane-glass-strong) !important;
+  box-shadow: 0 12px 30px rgba(60, 70, 140, .26) !important;
+}
+
+[data-theme="dark"] #recent-posts .recent-post-item:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .5) !important;
+}
+
+/* ============================================================
+   3. Navigation bar and footer
+   ============================================================ */
+
+/* Nav bar: a floating rounded glass card instead of a full-width strip.
+   The theme sets #nav to position:fixed with a solid background and padding
+   "0 16px", so we float it with margin and round its corners. */
+#nav,
+#nav.nav-fixed,
+#nav.nav-visible {
+  background: var(--softpane-glass-strong) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+  border: 1px solid var(--softpane-border) !important;
+  border-radius: 14px;
+  box-shadow: var(--softpane-shadow) !important;
+  margin: 10px 14px 0 !important;
+  padding: 7px 16px !important;
+  width: auto !important;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+#footer,
 #page-header {
   background: transparent !important;
 }
-
-/* 白天模式遮罩透明 */
-#footer::before {
-  background: transparent !important;
-}
-#page-header::before {
-  background: transparent !important;
-}
-
-/* 夜间模式遮罩透明 */
-[data-theme="dark"] #footer::before {
-  background: transparent !important;
-}
+#footer::before,
+#page-header::before,
+[data-theme="dark"] #footer::before,
 [data-theme="dark"] #page-header::before {
   background: transparent !important;
+}
+
+/* ============================================================
+   4. Blue / purple accents
+   ============================================================ */
+
+#aside-content .item-headline {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+#aside-content .item-headline i {
+  color: var(--default-bg-color);
+}
+
+#aside-content .card-info .site-data {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--softpane-border);
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+#aside-content .card-info .site-data a {
+  flex: 1;
+  padding: 8px 4px;
+  border-radius: 10px;
+  transition: background .25s ease;
+}
+
+#aside-content .card-info .site-data a:hover {
+  background: rgba(108, 122, 224, .18);
+}
+
+#aside-content .card-info .site-data .headline {
+  color: var(--card-meta);
+  font-size: .82em;
+  letter-spacing: .5px;
+}
+
+#aside-content .card-info .site-data .length-num {
+  color: var(--default-bg-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+#aside-content .card-info #card-info-btn {
+  border-radius: 10px;
+  background-color: var(--default-bg-color);
+  transition: background-color .25s ease, transform .25s ease;
+}
+
+#aside-content .card-info #card-info-btn:hover {
+  background-color: var(--btn-hover-color);
+  transform: translateY(-2px);
+}
+
+#recent-posts .recent-post-info .article-title:hover,
+#recent-posts .recent-post-info .article-title:focus {
+  color: var(--default-bg-color);
+}
+
+#recent-posts .article-meta-wrap .post-meta-date i,
+#recent-posts .article-meta-wrap .article-meta__categories i,
+#recent-posts .article-meta-wrap .article-meta__tags i {
+  color: var(--default-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6c7ae0, #8b7ae0) !important;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8b7ae0, #a78bfa) !important;
+}
+
+#article-container a:hover {
+  color: var(--btn-hover-color);
+}
+
+::selection {
+  background: rgba(165, 180, 252, .45);
+}
+
+/* ============================================================
+   5. Readability - the header mask is off, so titles and the nav
+   rely on a soft shadow to stay readable on bright backgrounds.
+   ============================================================ */
+#page-header #site-title,
+#page-header #site-subtitle,
+#nav .site-page,
+#nav .nav-site-title {
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .5), 0 0 3px rgba(0, 0, 0, .35);
+}
+
+#page-header #scroll-down i {
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .6));
 }
