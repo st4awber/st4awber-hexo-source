@@ -27,10 +27,10 @@ date: 2026-04-14
 ## 怎么找到我
 
 - GitHub：[github.com/st4awber](https://github.com/st4awber)
-- 邮箱：【建议填一个，方便别人联系你】
+- 邮箱：[3367056854@qq.com](mailto:3367056854@qq.com)
 
-> ✏️ 想加更多联系方式，可以编辑 `_config.butterfly.yml` 里的 `social:` 部分，
-> 加完后左侧头像卡片下面会自动出现小图标。
+> ✏️ 左侧头像卡片下面的图标来自 `_config.butterfly.yml` 里的 `social:` 部分，
+> 想加 B 站、知乎、X 等，去那里照格式加一行即可。
 
 ## 关于本站的技术
 
