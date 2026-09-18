@@ -167,12 +167,26 @@ subtitle:
   typed_option:
     strings:
     - "A gentle mix of code, comfort, and curiosity."
-    - "欢迎来到SoftPane"
-    typeSpeed: 30       # 打字速度：数值越小越快，60 是流畅不卡顿的黄金速度
-    backSpeed: 15      # 回退速度：比打字快一点，更自然
-    startDelay: 200    # 页面加载后，延迟300ms再开始打字
-    backDelay: 500      # 一行打完后，停留800ms再回退
-    loopCount: false    # 无限循环
+    - "把复杂的事，慢慢讲清楚。"
+    - "写代码，也写生活。"
+    - "在键盘与咖啡之间，找一点秩序。"
+    - "记录那些值得回看的小事。"
+    - "慢一点，但别停下来。"
+    - "好奇心是最好的老师。"
+    - "做一个安静的长期主义者。"
+    - "把想法写下来，它才算真正存在。"
+    - "晴耕雨读，顺其自然。"
+    - "Stay curious. Stay kind."
+    - "Small steps, every day."
+    - "Code, coffee, and quiet thoughts."
+    - "Keep it simple. Keep it honest."
+    - "未来可期，慢慢来。"
+    - "温柔地对待这个世界，也温柔地对待自己。"
+    typeSpeed: 95       # 打字速度：毫秒/字，越大越慢（30 太快，95 舒缓）
+    backSpeed: 55       # 回退速度：毫秒/字，越大消失越慢
+    startDelay: 200     # 页面加载后延迟多久开始打字
+    backDelay: 1600     # 一行打完后停留多久再回退（停留久一点才看得清）
+    loopCount: false    # 不限次数
     showCursor: true
     cursorChar: "|"
     loop: true
@@ -187,7 +201,21 @@ subtitle:
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
     - "A gentle mix of code, comfort, and curiosity."
-    - "欢迎来到 SoftPane"
+    - "把复杂的事，慢慢讲清楚。"
+    - "写代码，也写生活。"
+    - "在键盘与咖啡之间，找一点秩序。"
+    - "记录那些值得回看的小事。"
+    - "慢一点，但别停下来。"
+    - "好奇心是最好的老师。"
+    - "做一个安静的长期主义者。"
+    - "把想法写下来，它才算真正存在。"
+    - "晴耕雨读，顺其自然。"
+    - "Stay curious. Stay kind."
+    - "Small steps, every day."
+    - "Code, coffee, and quiet thoughts."
+    - "Keep it simple. Keep it honest."
+    - "未来可期，慢慢来。"
+    - "温柔地对待这个世界，也温柔地对待自己。"
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -1116,6 +1144,10 @@ css_prefix: true
 inject:
   head:
    - <link rel="stylesheet" href="/css/custom.css">
+   # 站点标题用的字体（几何风格）。加载失败也不影响，会退回系统字体。
+   - <link rel="preconnect" href="https://fonts.googleapis.com">
+   - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   - <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:wght@600;700&display=swap">
   bottom:
    - <script src="/js/mouse-lines.js"></script>
    # - <script src="/js/dynamic-bg.js"></script>
