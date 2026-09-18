@@ -1,0 +1,37 @@
+# ============================================================
+# 友链数据文件
+# ------------------------------------------------------------
+# 「友链」页面会自动读取本文件渲染成卡片列表，不需要改别的地方。
+#
+# 格式说明：
+#   class_name  : 分组标题（如「小伙伴们」），可以有多组
+#   class_desc  : 分组说明文字（可留空）
+#   link_list   : 该分组下的友链列表，每一项包含：
+#       name   : 站点名称
+#       link   : 站点网址（要写完整的 https:// ）
+#       avatar : 头像/站点图 URL（推荐 200x200 左右的图片）
+#       descr  : 一句话简介（鼠标悬停会显示全文）
+#
+# 新增好友：复制下面任意一个 - name: 开头的 4 行，粘贴到列表里改内容即可。
+# 缩进必须用「空格」，不要用 Tab，层级不能错。
+# ============================================================
+
+- class_name: 小伙伴们
+  class_desc: 常来常往的朋友们
+  link_list:
+    - name: st4awber
+      link: https://st4awber.github.io
+      avatar: https://st4awber.github.io/img/mmexport1776158411218.jpg
+      descr: SoftPane —— 自己的小站
+    - name: Hexo
+      link: https://hexo.io
+      avatar: https://hexo.io/icon/favicon-196x196.png
+      descr: 快速、简洁且高效的博客框架
+    - name: Butterfly
+      link: https://butterfly.js.org
+      avatar: https://butterfly.js.org/img/avatar.png
+      descr: 本站使用的 Hexo 主题
+    - name: GitHub
+      link: https://github.com/st4awber
+      avatar: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+      descr: 我的代码都放在这里
